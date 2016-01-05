@@ -23,7 +23,7 @@ public class LancePersonnage {
 		String[] nom = {"Damien", "Thib", "Guilhem", "Hassen", "Hodor"};
 		
 		for(int i = 0 ; i<nom.length ; i++){
-			String groupe = "G1.2";
+			String groupe = "G4";
 			
 			// nombre de tours pour ce personnage avant d'etre deconnecte 
 			// (30 minutes par defaut)

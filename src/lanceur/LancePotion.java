@@ -18,7 +18,7 @@ public class LancePotion {
 		String[] nom = {"Anduril", "Fine Lame", "Excalibur"};
 		
 		for(int i = 0 ; i<nom.length ; i++){
-			String groupe = "G1.2"; 
+			String groupe = "G4"; 
 			
 			// init des arguments
 			int port = Constantes.PORT_DEFAUT;
@@ -61,10 +61,23 @@ public class LancePotion {
 				
 				// caracteristiques de la potion
 				HashMap<Caracteristique, Integer> caractsPotion = new HashMap<Caracteristique, Integer>();
-				
-				caractsPotion.put(Caracteristique.VIE, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.VIE));
-				caractsPotion.put(Caracteristique.FORCE, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.FORCE));
-				caractsPotion.put(Caracteristique.INITIATIVE, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.INITIATIVE));
+				switch(i){
+				case 0:
+					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(50, 100, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.VIE))));
+					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.FORCE)));
+					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(-100, 100, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.INITIATIVE)));
+					break;
+				case 1:
+					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.VIE)));
+					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.FORCE)));
+					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(100, 200, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.INITIATIVE))));
+					break;
+				case 2:
+					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.VIE)));
+					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(50, 100, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.FORCE))));
+					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(-100, 100, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.INITIATIVE)));
+					break;
+				}
 				
 				// ajout de la potion
 				arene.ajoutePotion(new Potion(nom[i], groupe, caractsPotion), Calculs.positionAleatoireArene());
