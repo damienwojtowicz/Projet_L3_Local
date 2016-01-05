@@ -1,12 +1,11 @@
 package lanceur;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import logger.LoggerProjet;
 import serveur.IArene;
 import serveur.element.Caracteristique;
-import serveur.element.Potion;
+import serveur.element.PotionSpecialisee;
 import utilitaires.Calculs;
 import utilitaires.Constantes;
 
@@ -15,10 +14,8 @@ public class LancePotion {
 	private static String usage = "USAGE : java " + LancePotion.class.getName() + " [ port [ ipArene ] ]";
 
 	public static void main(String[] args) {
-		String[] nom = {"Anduril", "Fine Lame", "Excalibur"};
-		
-		for(int i = 0 ; i<nom.length ; i++){
-			String groupe = "G4"; 
+		String groupe = "G4";
+		for(int i = 0 ; i<9 ; i++){
 			
 			// init des arguments
 			int port = Constantes.PORT_DEFAUT;
@@ -44,61 +41,54 @@ public class LancePotion {
 				}
 			}
 			
-			// creation du logger
-			LoggerProjet logger = null;
-			try {
-				logger = new LoggerProjet(true, "potion_"+nom[i]+groupe);
+			switch(i%3){
+			case 0:
+				//potion de vie
+				executerPotion(Caracteristique.VIE,groupe,ipArene,port);
+				break;
+			case 1:
+				//potion de force
+				executerPotion(Caracteristique.FORCE,groupe,ipArene,port);
+				break;
+			case 2:
+				//potion d'initiative
+				executerPotion(Caracteristique.INITIATIVE,groupe,ipArene,port);
+				break;
+			}
+		}
+	}
+	/**
+	 * Créé une potion spécialisée sur une arène selon une caracteristique principale
+	 * @param c la caracteristique principale
+	 * @param groupe le groupe de la potion
+	 * @param ipArene l'adresse ip de l'arène
+	 * @param port le port de connexion
+	 */
+	private static void executerPotion(Caracteristique c,String groupe,String ipArene,int port){
+		// creation du logger
+		LoggerProjet logger = null;
+		
+		try {
+			logger = new LoggerProjet(true, "potion_"+utilitaires.GenererCaracts.nommerPotion(c)+groupe);
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(ErreurLancement.suivant);
 			}
-			
-			// lancement de la potion
-			try {
-				IArene arene = (IArene) java.rmi.Naming.lookup(Constantes.nomRMI(ipArene, port, "Arene"));
 	
-				logger.info("Lanceur", "Lancement de la potion sur le serveur...");
-				
-				// caracteristiques de la potion
-				HashMap<Caracteristique, Integer> caractsPotion = new HashMap<Caracteristique, Integer>();
-				
-				Caracteristique vie = Caracteristique.VIE;
-				Caracteristique force = Caracteristique.FORCE;
-				Caracteristique init = Caracteristique.INITIATIVE;
-				int vieMax = vie.getMax();
-				int forMax = force.getMax();
-				int initMax = init.getMax();
-				
-				switch(i){
-				case 0:
-					//potion de vie
-					caractsPotion.put(vie, Calculs.restreintNombre((int)(0.5 * vieMax), vieMax, (int)(1.5 * Calculs.valeurCaracAleatoire(vie))));
-					caractsPotion.put(force, Calculs.restreintNombre(-(int)(0.5 * forMax),(int)(0.5 * forMax), Calculs.valeurCaracAleatoirePosNeg(force)));
-					caractsPotion.put(init, Calculs.restreintNombre(-(int)(0.5 * initMax),(int)(0.5 * initMax), Calculs.valeurCaracAleatoirePosNeg(init)));
-					break;
-				case 1:
-					//potion d'initiative
-					caractsPotion.put(vie, Calculs.restreintNombre(-(int)(0.5 * vieMax),(int)(0.5 * vieMax), Calculs.valeurCaracAleatoirePosNeg(vie)));
-					caractsPotion.put(force, Calculs.restreintNombre(-(int)(0.5 * forMax),(int)(0.5 * forMax), Calculs.valeurCaracAleatoirePosNeg(force)));
-					caractsPotion.put(init, Calculs.restreintNombre((int)(0.5 * initMax), initMax, (int)(1.5 * Calculs.valeurCaracAleatoire(init))));
-					break;
-				case 2:
-					//potion de force
-					caractsPotion.put(vie, Calculs.restreintNombre(-(int)(0.5 * vieMax),(int)(0.5 * vieMax), Calculs.valeurCaracAleatoirePosNeg(vie)));
-					caractsPotion.put(force, Calculs.restreintNombre((int)(0.5 * forMax), forMax, (int)(1.5 * Calculs.valeurCaracAleatoire(force))));
-					caractsPotion.put(init, Calculs.restreintNombre(-(int)(0.5 * initMax),(int)(0.5 * initMax), Calculs.valeurCaracAleatoirePosNeg(init)));
-					break;
-				}
-				
-				// ajout de la potion
-				arene.ajoutePotion(new Potion(nom[i], groupe, caractsPotion), Calculs.positionAleatoireArene());
-				logger.info("Lanceur", "Lancement de la potion reussi");
-				
-			} catch (Exception e) {
-				logger.severe("Lanceur", "Erreur lancement :\n" + e.getCause());
-				e.printStackTrace();
-				System.exit(ErreurLancement.suivant);
-			}
+		// lancement de la potion
+		try {
+			IArene arene = (IArene) java.rmi.Naming.lookup(Constantes.nomRMI(ipArene, port, "Arene"));
+			
+			logger.info("Lanceur", "Lancement de la potion sur le serveur...");
+		
+			// ajout de la potion
+			arene.ajoutePotion(new PotionSpecialisee(groupe,c), Calculs.positionAleatoireArene());
+			logger.info("Lanceur", "Lancement de la potion reussi");
+		
+		} catch (Exception e) {
+			logger.severe("Lanceur", "Erreur lancement :\n" + e.getCause());
+			e.printStackTrace();
+			System.exit(ErreurLancement.suivant);
 		}
 	}
 }
