@@ -15,7 +15,7 @@ public class LanceIHM {
 	
 	private static String usage = "USAGE : java " + LanceIHM.class.getName() + " [ port [ ipArene ] ]";
 
-	public static void main(String[] args) {
+	public static void lancerIHM(String[] args) {
 		int port = Constantes.PORT_DEFAUT;
 		String ipArene = Constantes.IP_DEFAUT;
 		

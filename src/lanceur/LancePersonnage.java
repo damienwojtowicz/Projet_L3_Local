@@ -19,7 +19,7 @@ public class LancePersonnage {
 	
 	private static String usage = "USAGE : java " + LancePersonnage.class.getName() + " [ port [ ipArene ] ]";
 
-	public static void main(String[] args) {
+	public static void lancerPerso(String[] args) {
 		String[] nom = {"Damien", "Thib", "Guilhem", "Hassen", "Hodor"};
 		
 		for(int i = 0 ; i<nom.length ; i++){

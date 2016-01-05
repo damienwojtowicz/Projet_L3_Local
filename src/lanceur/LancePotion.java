@@ -13,7 +13,7 @@ public class LancePotion {
 	
 	private static String usage = "USAGE : java " + LancePotion.class.getName() + " [ port [ ipArene ] ]";
 
-	public static void main(String[] args) {
+	public static void lancerPotion(String[] args) {
 		String groupe = "G4";
 		for(int i = 0 ; i<9 ; i++){
 			
@@ -58,8 +58,8 @@ public class LancePotion {
 		}
 	}
 	/**
-	 * Créé une potion spécialisée sur une arène selon une caracteristique principale
-	 * @param c la caracteristique principale
+	 * Créé une potion spécialisée sur une arène selon une caractéristique principale
+	 * @param c la caractéristique principale
 	 * @param groupe le groupe de la potion
 	 * @param ipArene l'adresse ip de l'arène
 	 * @param port le port de connexion

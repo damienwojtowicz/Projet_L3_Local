@@ -15,10 +15,9 @@ public class LanceArene {
 	
 	private static String usage = "USAGE : java " + LanceArene.class.getName() + " [ port [ nbTours ] ]";
 
-	public static void main(String[] args) {
+	public static void lancerArene(String[] args) {
 		String ipArene = null;
 
-		// init des arguments
 		int port = Constantes.PORT_DEFAUT;
 		
 		// nombre de tours du serveur, sachant qu'un tour dure environ 1 seconde
@@ -46,6 +45,7 @@ public class LanceArene {
 				} catch (NumberFormatException e) {
 					ErreurLancement.NB_TOURS_INCORRECT.erreur(usage);
 				}
+				
 			}
 		}
 		
