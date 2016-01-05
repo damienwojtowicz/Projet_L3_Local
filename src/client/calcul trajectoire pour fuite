@@ -1,0 +1,5 @@
+console.setPhrase("Je fuis " + elemPlusProche.getNom());
+	Point p = new Point();
+	p.x = 2 * arene.getPosition(refRMI).x - voisins.get(refCible).x;
+	p.y = 2 * arene.getPosition(refRMI).y - voisins.get(refCible).y;
+	arene.deplace(refRMI, p);
