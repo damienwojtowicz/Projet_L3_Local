@@ -61,21 +61,32 @@ public class LancePotion {
 				
 				// caracteristiques de la potion
 				HashMap<Caracteristique, Integer> caractsPotion = new HashMap<Caracteristique, Integer>();
+				
+				Caracteristique vie = Caracteristique.VIE;
+				Caracteristique force = Caracteristique.FORCE;
+				Caracteristique init = Caracteristique.INITIATIVE;
+				int vieMax = vie.getMax();
+				int forMax = force.getMax();
+				int initMax = init.getMax();
+				
 				switch(i){
 				case 0:
-					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(50, 100, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.VIE))));
-					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.FORCE)));
-					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(-100, 100, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.INITIATIVE)));
+					//potion de vie
+					caractsPotion.put(vie, Calculs.restreintNombre((int)(0.5 * vieMax), vieMax, (int)(1.5 * Calculs.valeurCaracAleatoire(vie))));
+					caractsPotion.put(force, Calculs.restreintNombre(-(int)(0.5 * forMax),(int)(0.5 * forMax), Calculs.valeurCaracAleatoirePosNeg(force)));
+					caractsPotion.put(init, Calculs.restreintNombre(-(int)(0.5 * initMax),(int)(0.5 * initMax), Calculs.valeurCaracAleatoirePosNeg(init)));
 					break;
 				case 1:
-					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.VIE)));
-					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.FORCE)));
-					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(100, 200, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.INITIATIVE))));
+					//potion d'initiative
+					caractsPotion.put(vie, Calculs.restreintNombre(-(int)(0.5 * vieMax),(int)(0.5 * vieMax), Calculs.valeurCaracAleatoirePosNeg(vie)));
+					caractsPotion.put(force, Calculs.restreintNombre(-(int)(0.5 * forMax),(int)(0.5 * forMax), Calculs.valeurCaracAleatoirePosNeg(force)));
+					caractsPotion.put(init, Calculs.restreintNombre((int)(0.5 * initMax), initMax, (int)(1.5 * Calculs.valeurCaracAleatoire(init))));
 					break;
 				case 2:
-					caractsPotion.put(Caracteristique.VIE, Calculs.restreintNombre(-50, 50, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.VIE)));
-					caractsPotion.put(Caracteristique.FORCE, Calculs.restreintNombre(50, 100, (int)(1.5 * Calculs.valeurCaracAleatoire(Caracteristique.FORCE))));
-					caractsPotion.put(Caracteristique.INITIATIVE, Calculs.restreintNombre(-100, 100, Calculs.valeurCaracAleatoirePosNeg(Caracteristique.INITIATIVE)));
+					//potion de force
+					caractsPotion.put(vie, Calculs.restreintNombre(-(int)(0.5 * vieMax),(int)(0.5 * vieMax), Calculs.valeurCaracAleatoirePosNeg(vie)));
+					caractsPotion.put(force, Calculs.restreintNombre((int)(0.5 * forMax), forMax, (int)(1.5 * Calculs.valeurCaracAleatoire(force))));
+					caractsPotion.put(init, Calculs.restreintNombre(-(int)(0.5 * initMax),(int)(0.5 * initMax), Calculs.valeurCaracAleatoirePosNeg(init)));
 					break;
 				}
 				
