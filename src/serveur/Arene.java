@@ -846,7 +846,7 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 	 * courante
 	 * @throws RemoteException
 	 */
-	public void incrementeCaractElement(VuePersonnage vuePersonnage, Caracteristique carac, 
+	public void incrementeCaractPersonnage(VuePersonnage vuePersonnage, Caracteristique carac, 
 			int increment) throws RemoteException {
 		
 		int refRMI = vuePersonnage.getRefRMI();
@@ -869,6 +869,14 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 						"J'ai gagne " + increment + " points de " + carac);
 			}
 		}
+	}
+	
+	public void incrementeCaractPotion(VuePotion vuePotion, Caracteristique carac, 
+			int increment){
+		Potion potion = vuePotion.getElement();
+		
+		// increment de la caracteristique
+		potion.incrementeCaract(carac, increment);
 	}
 	
 	public LoggerProjet getLogger() {

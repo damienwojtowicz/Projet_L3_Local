@@ -10,7 +10,6 @@ import java.util.HashMap;
 public class Druide extends Personnage {
 
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * Cree un Druide avec un nom et un groupe.
 	 * @param nom du Druide

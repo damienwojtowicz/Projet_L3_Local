@@ -39,7 +39,7 @@ public class Ramassage extends Interaction<VuePotion> {
 				HashMap<Caracteristique, Integer> valeursPotion = defenseur.getElement().getCaracts();
 				
 				for(Caracteristique c : valeursPotion.keySet()) {
-					arene.incrementeCaractElement(attaquant, c, valeursPotion.get(c));
+					arene.incrementeCaractPersonnage(attaquant, c, valeursPotion.get(c));
 				}
 				
 				logs(Level.INFO, "Potion bue !");

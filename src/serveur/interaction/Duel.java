@@ -44,7 +44,7 @@ public class Duel extends Interaction<VuePersonnage> {
 
 			// degats
 			if (perteVie > 0) {
-				arene.incrementeCaractElement(defenseur, Caracteristique.VIE, -perteVie);
+				arene.incrementeCaractPersonnage(defenseur, Caracteristique.VIE, -perteVie);
 				
 				logs(Level.INFO, Constantes.nomRaccourciClient(attaquant) + " colle une beigne ("
 						+ perteVie + " points de degats) a " + Constantes.nomRaccourciClient(defenseur));
@@ -56,18 +56,18 @@ public class Duel extends Interaction<VuePersonnage> {
 			
 			//boost de force force pour Berserker
 			if(defenseur.getElement() instanceof Berserker){
-				arene.incrementeCaractElement(defenseur, Caracteristique.FORCE, 15);
+				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, 15);
 			}
 			
 			//Boost de vie pour Vampire puis téléportation
 			if(attaquant.getElement() instanceof Vampire){
-				arene.incrementeCaractElement(attaquant, Caracteristique.VIE, 15);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, 15);
 				attaquant.setPosition(Calculs.positionAleatoireArene());
 			}
 			
 			//Boost de vie si Goule tue un adversaire
 			if(attaquant.getElement() instanceof Goule && !defenseur.getElement().estVivant()){
-				arene.incrementeCaractElement(attaquant, Caracteristique.VIE, 40);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, 40);
 			}
 			
 		} catch (RemoteException e) {
@@ -81,7 +81,7 @@ public class Duel extends Interaction<VuePersonnage> {
 	 * @throws RemoteException
 	 */
 	private void incrementeInitiative(VuePersonnage defenseur) throws RemoteException {
-		arene.incrementeCaractElement(defenseur, Caracteristique.INITIATIVE, 
+		arene.incrementeCaractPersonnage(defenseur, Caracteristique.INITIATIVE, 
 				Constantes.INCR_DECR_INITIATIVE_DUEL);
 	}
 	
@@ -91,7 +91,7 @@ public class Duel extends Interaction<VuePersonnage> {
 	 * @throws RemoteException
 	 */
 	private void decrementeInitiative(VuePersonnage attaquant) throws RemoteException {
-		arene.incrementeCaractElement(attaquant, Caracteristique.INITIATIVE, 
+		arene.incrementeCaractPersonnage(attaquant, Caracteristique.INITIATIVE, 
 				-Constantes.INCR_DECR_INITIATIVE_DUEL);
 	}
 

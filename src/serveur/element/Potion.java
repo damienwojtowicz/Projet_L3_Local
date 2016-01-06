@@ -2,6 +2,8 @@ package serveur.element;
 
 import java.util.HashMap;
 
+import utilitaires.Calculs;
+
 /**
  * Une potion: un element donnant des bonus aux caracteristiques de celui qui
  * le ramasse.
@@ -19,5 +21,13 @@ public class Potion extends Element {
 	 */
 	public Potion(String nom, String groupe, HashMap<Caracteristique, Integer> caracts) {
 		super(nom, groupe, caracts);
+	}
+	
+	public void incrementeCaract(Caracteristique c, int inc) {		
+		if(caracts.containsKey(c)) {
+			caracts.put(c, Calculs.restreintCarac(c, caracts.get(c) + inc));
+		} else {
+			caracts.put(c, Calculs.restreintCarac(c, inc));
+		}
 	}
 }
