@@ -87,6 +87,36 @@ public class Constantes {
 	public static final Color COULEUR_MORTS = new Color(112, 112, 112);
 	
 	/**
+	 * Quantitée de vie perdue à chaque crise rage
+	 */
+	public static final int RAGE_MALUS = -20;
+	
+	/**
+	 * Quantitées de force et d'initiative gagnées à chaque crise de rage
+	 */
+	public static final int RAGE_BONUS = 10;
+	
+	/**
+	 * Valeur ajoutée au caractéristique d'une potion lors de concocter
+	 */
+	public static final int CONCOCTER_BONUS = 15;
+	
+	/**
+	 * Quantitée de force que gagne le Berserker à chaque fois qu'il est attaqué
+	 */
+	public static final int BERSERK_FORCE = 15;
+	
+	/**
+	 * Quantitée de vie que gagne le vampire à chaque fois qu'il attaque
+	 */
+	public static final int DRAIN = 10;
+	
+	/**
+	 * Quantitée de vie que gagne la goule à chaque fois qu'elle tue quelqu'un
+	 */
+	public static final int CANNIBALISME = 30;
+	
+	/**
 	 * Retourne le nom de la classe de l'objet passe en parametre, sous 
 	 * forme de chaine de caracteres.
 	 * @param o object

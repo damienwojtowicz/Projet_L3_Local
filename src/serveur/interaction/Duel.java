@@ -13,6 +13,7 @@ import serveur.element.Goule;
 import serveur.vuelement.VuePersonnage;
 import utilitaires.Calculs;
 import utilitaires.Constantes;
+import static utilitaires.Constantes.*;
 
 /**
  * Represente un duel entre deux personnages.
@@ -56,18 +57,18 @@ public class Duel extends Interaction<VuePersonnage> {
 			
 			//boost de force force pour Berserker
 			if(defenseur.getElement() instanceof Berserker){
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, 15);
+				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, BERSERK_FORCE);
 			}
 			
 			//Boost de vie pour Vampire puis téléportation
 			if(attaquant.getElement() instanceof Vampire){
-				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, 15);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, DRAIN);
 				attaquant.setPosition(Calculs.positionAleatoireArene());
 			}
 			
 			//Boost de vie si Goule tue un adversaire
 			if(attaquant.getElement() instanceof Goule && !defenseur.getElement().estVivant()){
-				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, 40);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, CANNIBALISME);
 			}
 			
 		} catch (RemoteException e) {

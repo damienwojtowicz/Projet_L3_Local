@@ -9,6 +9,7 @@ import serveur.element.Druide;
 import serveur.vuelement.VuePersonnage;
 import serveur.vuelement.VuePotion;
 import utilitaires.Constantes;
+import static utilitaires.Constantes.*;
 
 /**
  * Represente l'amélioration d'une potion par un Druide.
@@ -38,7 +39,7 @@ public class Concocter extends Interaction<VuePotion> {
 			HashMap<Caracteristique, Integer> valeursPotion = defenseur.getElement().getCaracts();
 			
 			for(Caracteristique c : valeursPotion.keySet()) {
-				arene.incrementeCaractPotion(defenseur, c, 15);
+				arene.incrementeCaractPotion(defenseur, c, CONCOCTER_BONUS);
 			}
 			
 			logs(Level.INFO, "Potion améliorée !");
