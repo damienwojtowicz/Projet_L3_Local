@@ -2,6 +2,7 @@ package utilitaires;
 
 import java.awt.Color;
 
+import serveur.element.Caracteristique;
 import serveur.vuelement.VueElement;
 
 /**
@@ -122,7 +123,12 @@ public class Constantes {
 	/**
 	 * Le seuil de point de vie au dessus du quel le berserker charge
 	 */
-	public static final double BERSERK_SEUIL_ATK = 0.2;
+	public static final double BERSERK_SEUIL_ATK = 0.2 * Caracteristique.VIE.getMax();
+	
+	/**
+	 * Le seuil de point de vie au dessous du quel le berserker se soigne
+	 */
+	public static final double BERSERK_SEUIL_SOIN = 0.8 * Caracteristique.VIE.getMax();
 	
 	/**
 	 * Retourne le nom de la classe de l'objet passe en parametre, sous 

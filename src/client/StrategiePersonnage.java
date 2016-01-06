@@ -72,6 +72,8 @@ public class StrategiePersonnage {
 		Point position = null;
 		
 		boolean aJoue = false;
+		
+		
 		try {
 			refRMI = console.getRefRMI();
 			position = arene.getPosition(refRMI);
@@ -88,25 +90,25 @@ public class StrategiePersonnage {
 				// j'interagis directement
 				if(elemPlusProche instanceof Potion) { // potion
 					// ramassage
-					aJoue=agirPotion(arene,refRMI,refCible,voisins);
+					aJoue = agirPotion(arene,refRMI,refCible,voisins);
 
 				} else { // personnage
 					// duel
-					aJoue=agirPersonnage(arene, refRMI, refCible, elemPlusProche,voisins);
+					aJoue = agirPersonnage(arene, refRMI, refCible, elemPlusProche,voisins);
 				}
 			}
 			else { // si voisins, mais plus eloignes
 				// je vais vers le plus proche
 				if(elemPlusProche instanceof Potion){
-					aJoue=voitPotion(arene, refRMI, refCible, elemPlusProche,voisins);
+					aJoue = voitPotion(arene, refRMI, refCible, elemPlusProche,voisins);
 				}
 				else{
-					aJoue=voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
+					aJoue = voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
 				}
 			}
 		}
 		if(!aJoue) { // je n'ai pas de voisins, j'erre
-			aJoue=agirRien(arene, refRMI,voisins); 
+			aJoue = agirRien(arene, refRMI,voisins); 
 		}
 	}
 
