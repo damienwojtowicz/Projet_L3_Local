@@ -7,6 +7,9 @@ import java.util.logging.Level;
 import serveur.Arene;
 import serveur.element.Caracteristique;
 import serveur.element.Personnage;
+import serveur.element.Berserker;
+import serveur.element.Vampire;
+import serveur.element.Goule;
 import serveur.vuelement.VuePersonnage;
 import utilitaires.Calculs;
 import utilitaires.Constantes;
@@ -50,6 +53,22 @@ public class Duel extends Interaction<VuePersonnage> {
 			// initiative
 			incrementeInitiative(defenseur);
 			decrementeInitiative(attaquant);
+			
+			//boost de force force pour Berserker
+			if(defenseur.getElement() instanceof Berserker){
+				arene.incrementeCaractElement(defenseur, Caracteristique.FORCE, 15);
+			}
+			
+			//Boost de vie pour Vampire puis téléportation
+			if(attaquant.getElement() instanceof Vampire){
+				arene.incrementeCaractElement(attaquant, Caracteristique.VIE, 15);
+				attaquant.setPosition(Calculs.positionAleatoireArene());
+			}
+			
+			//Boost de vie si Goule tue un adversaire
+			if(attaquant.getElement() instanceof Goule && !defenseur.getElement().estVivant()){
+				arene.incrementeCaractElement(attaquant, Caracteristique.VIE, 40);
+			}
 			
 		} catch (RemoteException e) {
 			logs(Level.INFO, "\nErreur lors d'une attaque : " + e.toString());
