@@ -86,6 +86,7 @@ public class Constantes {
 	 */
 	public static final Color COULEUR_MORTS = new Color(112, 112, 112);
 	
+	// Constantes pour les interactions
 	/**
 	 * Quantitée de vie perdue à chaque crise rage
 	 */
@@ -101,6 +102,7 @@ public class Constantes {
 	 */
 	public static final int CONCOCTER_BONUS = 15;
 	
+	// Constantes pour les duels
 	/**
 	 * Quantitée de force que gagne le Berserker à chaque fois qu'il est attaqué
 	 */
@@ -115,6 +117,12 @@ public class Constantes {
 	 * Quantitée de vie que gagne la goule à chaque fois qu'elle tue quelqu'un
 	 */
 	public static final int CANNIBALISME = 30;
+	
+	// Constantes pour les stratégies
+	/**
+	 * Le seuil de point de vie au dessus du quel le berserker charge
+	 */
+	public static final double BERSERK_SEUIL_ATK = 0.2;
 	
 	/**
 	 * Retourne le nom de la classe de l'objet passe en parametre, sous 
