@@ -60,9 +60,34 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean voitPotion(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		// les goules ne peuvent pas ramasser de potion, on les ignore
+		// les goules ne peuvent pas ramasser de potion, ils les ignorent
 		voisins.remove(refCible);;
 		return false;
+	}
+	
+	/**
+	 * action effectuée si le personnage voit un personnage
+	 * @param arene du personnage
+	 * @param refRMI id du personnage
+	 * @param refCible id du personnage ciblé
+	 * @param elemPlusProche personnage ciblée
+	 * @param voisins vision du personnage 
+	 * @throws RemoteException
+	 */
+	protected boolean voitPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
+		if(this.timerCapacite > 0){
+			return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
+		}
+		else{
+			if(arene.elementFromRef(refRMI).getCaract(Caracteristique.VIE) > GOULE_SEUIL_VIE){
+				this.timerCapacite = RAGE_TIMER;
+				voisins.clear();
+				return arene.lancerRage(refRMI);
+			}
+			else{
+				return super.agirRien(arene, refRMI, voisins);
+			}
+		}
 	}
 	
 	/**
