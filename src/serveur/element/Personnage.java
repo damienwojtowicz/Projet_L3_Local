@@ -15,7 +15,7 @@ import utilitaires.Calculs;
  * de jouer une strategie.
  * 
  */
-public abstract class Personnage extends Element {
+public class Personnage extends Element {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -61,6 +61,25 @@ public abstract class Personnage extends Element {
 		return vie != null && vie > 0;
 	}
 	
-	public abstract void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException;
-	public abstract void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException;
+	/**
+	 * eventuelles actions à effectuer lorsque le personnage attaque
+	 * @param defenseur la vue personnage du defenseur
+	 * @param attaquant la vue personnage de l'attaquant
+	 * @param arene l'arene ou combattent les personnages
+	 * @throws RemoteException
+	 */
+	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		// pas de capacité spéciale en attaque (comportement par defaut)
+	}
+	
+	/**
+	 * eventuelles actions à effectuer lorsque le personnage est attaqué
+	 * @param defenseur la vue personnage du defenseur
+	 * @param attaquant la vue personnage de l'attaquant
+	 * @param arene l'arene ou combattent les personnages
+	 * @throws RemoteException
+	 */
+	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		// pas de capacité spéciale en defense (comportement par defaut)
+	}
 }

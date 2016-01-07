@@ -51,25 +51,9 @@ public class Duel extends Interaction<VuePersonnage> {
 			incrementeInitiative(defenseur);
 			decrementeInitiative(attaquant);
 			
+			// on effectue les capacités de combat des deux personnages
 			attaquant.getElement().capaciteCombatAtt(defenseur,attaquant,arene);
 			defenseur.getElement().capaciteCombatDef(defenseur,attaquant,arene);
-			/*
-			//boost de force force pour Berserker
-			if(defenseur.getElement() instanceof Berserker){
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, BERSERK_FORCE);
-			}
-			
-			//Boost de vie pour Vampire puis téléportation
-			if(attaquant.getElement() instanceof Vampire){
-				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, DRAIN);
-				attaquant.setPosition(Calculs.positionAleatoireArene());
-			}
-			
-			//Boost de vie si Goule tue un adversaire
-			if(attaquant.getElement() instanceof Goule && !defenseur.getElement().estVivant()){
-				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, CANNIBALISME);
-			}
-			*/
 			
 		} catch (RemoteException e) {
 			logs(Level.INFO, "\nErreur lors d'une attaque : " + e.toString());
