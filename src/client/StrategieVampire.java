@@ -46,32 +46,13 @@ public class StrategieVampire extends StrategiePersonnage {
 	protected boolean agirPotion(IArene arene, int refRMI, int refCible, HashMap<Integer, Point> voisins) throws RemoteException{
 		if(arene.elementFromRef(refCible).getCaract(Caracteristique.INITIATIVE) > 0){
 			// si la potion augmente l'initiative, le vampire la ramasse
-			console.setPhrase("Je ramasse une potion");
-			arene.ramassePotion(refRMI, refCible);
-			voisins.clear();
-			return true;
+			return super.agirPotion(arene,refRMI,refCible,voisins);
 		}
 		else{
 			//sinon on l'ignore
 			voisins.remove(refCible);;
 			return false;
 		}
-	}
-	
-	/**
-	 * action effectuée si le personnage est à proximitée d'un personnage
-	 * @param arene du personnage
-	 * @param refRMI id du personnage
-	 * @param refCible id du personnage attaqué
-	 * @param elemPlusProche personnage attaqué
-	 * @param voisins vision du personnage 
-	 * @throws RemoteException
-	 */
-	protected boolean agirPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		console.setPhrase("Je fais un duel avec " + elemPlusProche.getNom());
-		arene.lanceAttaque(refRMI, refCible);
-		voisins.clear();
-		return true;
 	}
 	
 	/**
@@ -86,10 +67,7 @@ public class StrategieVampire extends StrategiePersonnage {
 	protected boolean voitPotion(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
 		if(elemPlusProche.getCaract(Caracteristique.INITIATIVE) > 0){
 			// si la potion augmente l'initiative, le vampire se dirige vers elle
-			console.setPhrase("Je vais vers mon voisin " + elemPlusProche.getNom());
-			arene.deplace(refRMI, refCible);
-			voisins.clear();
-			return true;
+			return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
 		}else{
 			// sinon on l'ignore
 			voisins.remove(refCible);
@@ -108,10 +86,7 @@ public class StrategieVampire extends StrategiePersonnage {
 	protected boolean voitPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
 		if(console.getPersonnage().getCaract(Caracteristique.INITIATIVE) >= elemPlusProche.getCaract(Caracteristique.INITIATIVE)){
 			// si le vampire a plus d'Initiative que le personnage ciblé, il charge ce dernier
-			console.setPhrase("Je vais vers mon voisin " + elemPlusProche.getNom());
-			arene.deplace(refRMI, refCible);
-			voisins.clear();
-			return true;
+			return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
 		}
 		else{
 			// sinon il l'ignore
