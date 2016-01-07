@@ -1,6 +1,11 @@
 package serveur.element;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
+
+import serveur.Arene;
+import serveur.vuelement.VuePersonnage;
+import static utilitaires.Constantes.*;
 
 /**
  * 
@@ -20,5 +25,13 @@ public class Goule extends Personnage {
 	 */
 	public Goule(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Goule "+nom, groupe, caracts);
+	}
+	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		if(!defenseur.getElement().estVivant()){
+			arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, CANNIBALISME);
+		}
+	}
+	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		
 	}
 }

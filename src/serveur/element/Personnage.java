@@ -3,8 +3,11 @@
  */
 package serveur.element;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
+import serveur.Arene;
+import serveur.vuelement.VuePersonnage;
 import utilitaires.Calculs;
 
 /**
@@ -12,7 +15,7 @@ import utilitaires.Calculs;
  * de jouer une strategie.
  * 
  */
-public class Personnage extends Element {
+public abstract class Personnage extends Element {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -57,4 +60,7 @@ public class Personnage extends Element {
 		Integer vie = caracts.get(Caracteristique.VIE);
 		return vie != null && vie > 0;
 	}
+	
+	public abstract void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException;
+	public abstract void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException;
 }

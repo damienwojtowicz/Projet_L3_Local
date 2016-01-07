@@ -1,6 +1,12 @@
 package serveur.element;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
+
+import serveur.Arene;
+import serveur.vuelement.VuePersonnage;
+import utilitaires.Calculs;
+import static utilitaires.Constantes.*;
 
 /**
  * 
@@ -20,5 +26,12 @@ public class Vampire extends Personnage {
 	 */
 	public Vampire(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Vampire "+nom, groupe, caracts);
+	}
+	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, DRAIN);
+		attaquant.setPosition(Calculs.positionAleatoireArene());
+	}
+	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		
 	}
 }

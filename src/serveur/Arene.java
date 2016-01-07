@@ -840,18 +840,18 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 	 * Ajoute l'increment donne a la caracteristique donne de l'element 
 	 * correspondant a la vue donnee. 
 	 * L'increment peut etre positif ou negatif. 
-	 * @param vuePersonnage client a mettre a jour
+	 * @param defenseur client a mettre a jour
 	 * @param carac caracteristique a mettre a jour
 	 * @param increment increment a ajouter a la valeur de la caracteristique 
 	 * courante
 	 * @throws RemoteException
 	 */
-	public void incrementeCaractPersonnage(VuePersonnage vuePersonnage, Caracteristique carac, 
+	public void incrementeCaractPersonnage(VuePersonnage defenseur, Caracteristique carac, 
 			int increment) throws RemoteException {
 		
-		int refRMI = vuePersonnage.getRefRMI();
+		int refRMI = defenseur.getRefRMI();
 		IConsole console = consoleFromRef(refRMI);
-		Personnage pers = vuePersonnage.getElement();
+		Personnage pers = defenseur.getElement();
 		
 		// increment de la caracteristique
 		pers.incrementeCaract(carac, increment);

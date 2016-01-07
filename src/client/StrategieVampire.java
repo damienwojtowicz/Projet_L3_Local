@@ -10,8 +10,6 @@ import serveur.element.Caracteristique;
 import serveur.element.Element;
 import serveur.element.Vampire;
 
-import static utilitaires.Constantes.*;
-
 /**
  * Stratégie d'un Vampire
  */

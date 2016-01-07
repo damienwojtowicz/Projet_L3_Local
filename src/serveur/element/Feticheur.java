@@ -1,6 +1,5 @@
 package serveur.element;
 
-
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
@@ -9,22 +8,22 @@ import serveur.vuelement.VuePersonnage;
 
 /**
  * 
- * Druide: un personnage qui améliore les potions avant de les ramasser.
+ * Feticheur: un personnage qui ne ramasse pas de potion mais laisse des potions piégées.
  * 
  */
-public class Druide extends Personnage {
+public class Feticheur extends Personnage {
 
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Cree un Druide avec un nom et un groupe.
-	 * @param nom du Druide
-	 * @param groupe d'etudiants du Druide
-	 * @param caracts caracteristiques du Druide
-	 */
-	public Druide(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
-		super("Druide "+nom, groupe, caracts);
-	}
 
+	/**
+	 * Cree un Feticheur avec un nom et un groupe.
+	 * @param nom du Feticheur
+	 * @param groupe d'etudiants du Feticheur
+	 * @param caracts caracteristiques du Feticheur
+	 */
+	public Feticheur(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
+		super("Feticheur "+nom, groupe, caracts);
+	}
 	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
 		
 	}
