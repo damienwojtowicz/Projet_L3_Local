@@ -15,5 +15,4 @@ public class ToutLancer{
 		LancePersonnage.lancerPerso(args);
 		LancePotion.lancerPotion(args);
 	}
-
 }

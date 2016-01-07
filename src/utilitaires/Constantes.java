@@ -140,6 +140,14 @@ public class Constantes {
 	 */
 	public static final int CONCOCTER_TIMER = 2;
 	
+	// autres
+	
+	/**
+	 * Valeur max de malus d'un poison
+	 */
+	public static final int POISON_MAX = 25;
+	
+	// methodes
 	/**
 	 * Retourne le nom de la classe de l'objet passe en parametre, sous 
 	 * forme de chaine de caracteres.

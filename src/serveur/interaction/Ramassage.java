@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import serveur.Arene;
 import serveur.element.Caracteristique;
+import serveur.element.Poison;
 import serveur.vuelement.VuePersonnage;
 import serveur.vuelement.VuePotion;
 import utilitaires.Constantes;
@@ -37,9 +38,15 @@ public class Ramassage extends Interaction<VuePotion> {
 
 				// caracteristiques de la potion
 				HashMap<Caracteristique, Integer> valeursPotion = defenseur.getElement().getCaracts();
-				
-				for(Caracteristique c : valeursPotion.keySet()) {
-					arene.incrementeCaractPersonnage(attaquant, c, valeursPotion.get(c));
+				if(defenseur.getElement() instanceof Poison){
+					for(Caracteristique c : valeursPotion.keySet()) {
+						arene.incrementeCaractPersonnage(attaquant, c, -valeursPotion.get(c));
+					}
+				}
+				else{
+					for(Caracteristique c : valeursPotion.keySet()) {
+						arene.incrementeCaractPersonnage(attaquant, c, valeursPotion.get(c));
+					}
 				}
 				
 				logs(Level.INFO, "Potion bue !");

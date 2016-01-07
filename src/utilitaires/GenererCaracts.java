@@ -2,6 +2,7 @@ package utilitaires;
 
 import java.util.HashMap;
 import serveur.element.*;
+import static utilitaires.Constantes.*;
 
 public class GenererCaracts {
 	/**
@@ -20,6 +21,7 @@ public class GenererCaracts {
 	private static int caractSecondaire(Caracteristique c){
 		return Calculs.restreintNombre(-(int)(0.25 * c.getMax()),(int)(0.25 * c.getMax()), Calculs.valeurCaracAleatoirePosNeg(c));
 	}
+	
 	/**
 	 * Renvoie une hashmap remplie selon une caracteristique principale
 	 * @param c la caracteristique principale de la potion
@@ -37,6 +39,19 @@ public class GenererCaracts {
 		}
 		return res;
 	}
+	
+	/**
+	 * Renvoie une hashmap remplie pour un poison
+	 * @return une hashmap pour configurer le poison
+	 */
+	public static HashMap<Caracteristique, Integer> remplirPoison(){
+		HashMap<Caracteristique, Integer> res = new HashMap<Caracteristique, Integer>();
+		for(Caracteristique k : Caracteristique.values()){
+			res.put(k, Calculs.nombreAleatoire(0, POISON_MAX));
+		}
+		return res;
+	}
+	
 	/**
 	 * Génère un nom de potion selon sa caracteristique principale
 	 * @param c la caracteristique principale de la potion
