@@ -30,8 +30,8 @@ public class Rage extends Interaction<VuePersonnage> {
 			try {
 				
 				arene.incrementeCaractPersonnage(defenseur, Caracteristique.VIE, RAGE_MALUS);
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, RAGE_BONUS);
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.INITIATIVE, RAGE_BONUS);
+				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, (int)(RAGE_BONUS * Caracteristique.FORCE.getMax()));
+				arene.incrementeCaractPersonnage(defenseur, Caracteristique.INITIATIVE, (int)(RAGE_BONUS * Caracteristique.INITIATIVE.getMax()));
 				defenseur.setPhrase("RAAAH ! je suis plus fort !");
 				logs(Level.INFO, "crise de rage réussie");
 			} catch (RemoteException e) {

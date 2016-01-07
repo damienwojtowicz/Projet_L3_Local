@@ -91,33 +91,33 @@ public class Constantes {
 	/**
 	 * Quantitée de vie perdue à chaque crise rage
 	 */
-	public static final int RAGE_MALUS = -15;
+	public static final int RAGE_MALUS = -(int)(0.15 * Caracteristique.VIE.getMax());
 	
 	/**
 	 * Quantitées de force et d'initiative gagnées à chaque crise de rage
 	 */
-	public static final int RAGE_BONUS = 10;
+	public static final double RAGE_BONUS = 0.15;
 	
 	/**
 	 * Valeur ajoutée au caractéristique d'une potion lors de concocter
 	 */
-	public static final int CONCOCTER_BONUS = 15;
+	public static final double CONCOCTER_BONUS = 0.15;
 	
 	// Constantes pour les duels
 	/**
 	 * Quantitée de force que gagne le Berserker à chaque fois qu'il est attaqué
 	 */
-	public static final int BERSERK_FORCE = 15;
+	public static final int BERSERK_FORCE = (int)(0.15 * Caracteristique.FORCE.getMax());
 	
 	/**
 	 * Quantitée de vie que gagne le vampire à chaque fois qu'il attaque
 	 */
-	public static final int DRAIN = 10;
+	public static final int DRAIN = (int)(0.1 * Caracteristique.VIE.getMax());
 	
 	/**
 	 * Quantitée de vie que gagne la goule à chaque fois qu'elle tue quelqu'un
 	 */
-	public static final int CANNIBALISME = 30;
+	public static final int CANNIBALISME = (int)(0.3 * Caracteristique.VIE.getMax());
 	
 	// Constantes pour les stratégies
 	/**
@@ -133,7 +133,7 @@ public class Constantes {
 	/**
 	 * Seuil à partir duquel le druide charge
 	 */
-	public static final int DRUIDE_SEUIL_FORCE = 35;
+	public static final int DRUIDE_SEUIL_FORCE = (int)(0.35 * Caracteristique.FORCE.getMax());
 	
 	/**
 	 * Timer du druide lui permettant d'améliorer les potions
@@ -143,7 +143,7 @@ public class Constantes {
 	/**
 	 * Le sueil de Vie en dessous duquel la goule ne peut plus utiliser Rage
 	 */
-	public static final int GOULE_SEUIL_VIE = 30;
+	public static final int GOULE_SEUIL_VIE = (int)(0.3 * Caracteristique.FORCE.getMax());
 	
 	/**
 	 * Timer de la Goule entre chaque Rage

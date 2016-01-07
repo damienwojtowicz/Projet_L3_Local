@@ -39,7 +39,7 @@ public class Concocter extends Interaction<VuePotion> {
 			HashMap<Caracteristique, Integer> valeursPotion = defenseur.getElement().getCaracts();
 			
 			for(Caracteristique c : valeursPotion.keySet()) {
-				arene.incrementeCaractPotion(defenseur, c, CONCOCTER_BONUS);
+				arene.incrementeCaractPotion(defenseur, c, (int)(CONCOCTER_BONUS * c.getMax()));
 			}
 			
 			logs(Level.INFO, "Potion améliorée !");
