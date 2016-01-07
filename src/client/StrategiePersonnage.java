@@ -24,6 +24,11 @@ public class StrategiePersonnage {
 	 * (l'arene).
 	 */
 	protected Console console;
+	
+	/**
+	 * attribut servant éventuellement à timer les capacités des personnages
+	 */
+	private int timerCapacite;
 
 	/**
 	 * Cree un personnage, la console associe et sa strategie.
@@ -40,6 +45,7 @@ public class StrategiePersonnage {
 		
 		logger.info("Lanceur", "Creation de la console...");
 		
+		this.timerCapacite = 0;
 		try {
 			console = new Console(ipArene, port, ipConsole, this, 
 					perso, 
@@ -81,6 +87,10 @@ public class StrategiePersonnage {
 			e.printStackTrace();
 		}
 		
+		// si le timer est non nul, on le décrémente de 1
+		if(this.timerCapacite > 0){
+			this.timerCapacite--;
+		}
 		while(!voisins.isEmpty()){
 			int refCible = Calculs.chercheElementProche(position, voisins);
 			int distPlusProche = Calculs.distanceChebyshev(position, arene.getPosition(refCible));
@@ -187,6 +197,5 @@ public class StrategiePersonnage {
 		voisins.clear();
 		return true;
 	}
-	
 	
 }
