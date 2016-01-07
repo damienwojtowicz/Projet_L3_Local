@@ -9,6 +9,7 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Feticheur;
 import serveur.element.Element;
+import serveur.element.Goule;
 import static utilitaires.Constantes.*;
 
 /**
@@ -75,9 +76,23 @@ public class StrategieFeticheur extends StrategiePersonnage {
 	 * @throws RemoteException
 	 */
 	protected boolean voitPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		// Le Feticheur ne cherche pas à se battre
-		voisins.remove(refCible);;
-		return false;
+		if(elemPlusProche instanceof Goule){
+			// les Goule ne craignent pas le poison du feticheur, il les charge donc
+			if(this.timerCapacite > 0){
+				return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
+			}
+			else{
+				// mais il continue de poser des poisons
+				this.timerCapacite = EMPOISONNE_TIMER;
+				voisins.clear();
+				return arene.lancerPoison(refRMI);
+			}
+		}
+		else{
+			// sinon Le Feticheur ne cherche pas à se battre
+			voisins.remove(refCible);;
+			return false;
+		}
 	}
 	
 	/**
