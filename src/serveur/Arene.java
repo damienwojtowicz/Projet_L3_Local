@@ -796,6 +796,7 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 		} else {
 			// sinon, on joue l'interaction
 			new Empoisonne(this, vuePersonnage).interagit();
+			
 			personnages.get(refRMI).executeAction();
 			
 			res = true;

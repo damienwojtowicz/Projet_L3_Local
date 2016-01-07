@@ -6,15 +6,10 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import logger.LoggerProjet;
-import serveur.Arene;
 import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Element;
 import serveur.element.Druide;
-import serveur.interaction.Concocter;
-import serveur.vuelement.VueElement;
-import serveur.vuelement.VuePersonnage;
-import serveur.vuelement.VuePotion;
 import static utilitaires.Constantes.*;
 
 /**

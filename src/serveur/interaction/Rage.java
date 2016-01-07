@@ -18,7 +18,7 @@ public class Rage extends Interaction<VuePersonnage> {
 	/**
 	 * Cree une interaction de rage.
 	 * @param arene arene
-	 * @param goule Vuepersonnage de la Goule faisant un crise de rage
+	 * @param goule Vuepersonnage de la Goule faisant une crise de rage
 	 */
 	public Rage(Arene arene, VuePersonnage goule) {
 		super(arene, goule, goule);

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import logger.LoggerProjet;
 import serveur.IArene;
 import serveur.element.Caracteristique;
-import serveur.element.Goule;
+import serveur.element.Feticheur;
 import serveur.element.Element;
 import serveur.element.Poison;
 import static utilitaires.Constantes.*;
@@ -32,7 +32,7 @@ public class StrategieFeticheur extends StrategiePersonnage {
 	public StrategieFeticheur(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Goule(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Feticheur(nom, groupe,caracts));
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class StrategieFeticheur extends StrategiePersonnage {
 		}
 		else{
 			// sinon il se dirige vers elle
-			return super.agirPotion(arene, refRMI, refCible, voisins);
+			return super.voitPotion(arene, refRMI, refCible, elemPlusProche, voisins);
 		}
 	}
 	
