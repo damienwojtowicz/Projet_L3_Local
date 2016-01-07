@@ -164,6 +164,15 @@ public interface IArene extends Remote {
 	public boolean ramassePotion(int refRMI, int refPotion) throws RemoteException;
 	
 	/**
+	 * Execute un conction sur une potion par un druide
+	 * @param refRMI reference RMI du druide voulant améliorer une potion
+	 * @param refPotion reference RMI de la potion qui doit etre amelioree
+	 * @return vrai si l'action a ete effectuee, faux sinon
+	 * @throws RemoteException
+	 */
+	public boolean concoctePotion(int refRMI, int refPotion) throws RemoteException;
+	
+	/**
 	 * Execute une crise de rage sur une goule, si possible.
 	 * @param refRMI reference RMI dela goule
 	 * @return vrai si l'action a ete effectuee, faux sinon

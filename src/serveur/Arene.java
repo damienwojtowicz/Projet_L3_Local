@@ -22,6 +22,7 @@ import serveur.element.Element;
 import serveur.element.Goule;
 import serveur.element.Personnage;
 import serveur.element.Potion;
+import serveur.interaction.Concocter;
 import serveur.interaction.Deplacement;
 import serveur.interaction.Duel;
 import serveur.interaction.Rage;
@@ -716,6 +717,37 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 			// on teste la distance entre le personnage et la potion
 			if (distance <= Constantes.DISTANCE_MIN_INTERACTION) {
 				new Ramassage(this, vuePersonnage, vuePotion).interagit();
+				personnages.get(refRMI).executeAction();
+				
+				res = true;
+			} else {
+				logger.warning(Constantes.nomClasse(this), nomRaccourciClient(refRMI) + 
+						" a tente d'interagir avec " + vuePotion.getElement().getNom() + 
+						", alors qu'il est trop eloigne !\nDistance = " + distance);
+			}
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public boolean concoctePotion(int refRMI, int refPotion) throws RemoteException {
+		boolean res = false;
+		
+		VuePersonnage vuePersonnage = personnages.get(refRMI);
+		VuePotion vuePotion = potions.get(refPotion);
+		
+		if (vuePersonnage.isActionExecutee()) {
+			// si une action a deja ete executee
+			logActionDejaExecutee(refRMI);
+			
+		} else {
+			// sinon, on tente de jouer l'interaction
+			int distance = Calculs.distanceChebyshev(vuePersonnage.getPosition(), vuePotion.getPosition());
+			
+			// on teste la distance entre le personnage et la potion
+			if (distance <= Constantes.DISTANCE_MIN_INTERACTION) {
+				new Concocter(this, vuePersonnage, vuePotion).interagit();
 				personnages.get(refRMI).executeAction();
 				
 				res = true;
