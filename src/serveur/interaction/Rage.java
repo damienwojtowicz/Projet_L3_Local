@@ -9,19 +9,29 @@ import serveur.element.Goule;
 import serveur.vuelement.VuePersonnage;
 import static utilitaires.Constantes.*;
 
+/**
+ * Represente une amélioration d'initiative et de force par une Goule en échange de vie.
+ *
+ */
 public class Rage extends Interaction<VuePersonnage> {
 	
-	public Rage(Arene arene, VuePersonnage attaquant, VuePersonnage defenseur) {
-		super(arene, attaquant, defenseur);
+	/**
+	 * Cree une interaction de rage.
+	 * @param arene arene
+	 * @param goule Vuepersonnage de la Goule faisant un crise de rage
+	 */
+	public Rage(Arene arene, VuePersonnage goule) {
+		super(arene, goule);
 	}
 	
 	public void interagit(){
 		// si le personnage est vivant, si c'est bien une goule, et si sa vie est supérieure à 20 points
-		if(attaquant.getElement().estVivant() && attaquant.getElement() instanceof Goule && attaquant.getElement().getCaract(Caracteristique.VIE) > 20) {
+		if(attaquant.getElement().estVivant() && attaquant.getElement() instanceof Goule) {
 			try {			
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.VIE, RAGE_MALUS);
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, RAGE_BONUS);
-				arene.incrementeCaractPersonnage(defenseur, Caracteristique.INITIATIVE, RAGE_BONUS);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, RAGE_MALUS);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.FORCE, RAGE_BONUS);
+				arene.incrementeCaractPersonnage(attaquant, Caracteristique.INITIATIVE, RAGE_BONUS);
+				logs(Level.INFO, "RAAAAAARG ! Je suis plus fort !");
 			} catch (RemoteException e) {
 				logs(Level.INFO, "\nErreur lors d'une crise rage : " + e.toString());
 			}

@@ -18,9 +18,9 @@ import static utilitaires.Constantes.*;
 public class Concocter extends Interaction<VuePotion> {
 
 	/**
-	 * Cree une interaction de ramassage.
+	 * Cree une interaction de concoctage.
 	 * @param arene arene
-	 * @param druide personnage améliorant la potion
+	 * @param druide Vuepersonnage du druide améliorant la potion
 	 * @param potion potion a améliorer
 	 */
 	public Concocter(Arene arene, VuePersonnage druide, VuePotion potion) {
