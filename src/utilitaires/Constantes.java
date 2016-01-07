@@ -140,6 +140,16 @@ public class Constantes {
 	 */
 	public static final int CONCOCTER_TIMER = 2;
 	
+	/**
+	 * Le sueil de Vie en dessous duquel la goule ne peut plus utiliser Rage
+	 */
+	public static final int GOULE_SEUIL_VIE = 30;
+	
+	/**
+	 * Timer de la Goule entre chaque Rage
+	 */
+	public static final int RAGE_TIMER = 10;
+	
 	// autres
 	
 	/**
