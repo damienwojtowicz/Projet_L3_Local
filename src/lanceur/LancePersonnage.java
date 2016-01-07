@@ -76,9 +76,14 @@ public class LancePersonnage {
 				caracts.put(Caracteristique.FORCE, 
 						Calculs.valeurCaracAleatoire(Caracteristique.FORCE)); 
 				
-				Point position = Calculs.positionAleatoireArene();
+				//Point position = Calculs.positionAleatoireArene();
 				
-				new StrategieGoule(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, position, logger);
+				new StrategieDruide(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieVampire(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieBerserker(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieGoule(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieFeticheur(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				
 				logger.info("Lanceur", "Creation du personnage reussie");
 				
 			} catch (Exception e) {
