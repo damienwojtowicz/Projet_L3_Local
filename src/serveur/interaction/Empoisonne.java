@@ -13,7 +13,10 @@ import serveur.vuelement.VuePersonnage;
  */
 public class Empoisonne extends Interaction<VuePersonnage> {
 	
-	
+	/**
+	 * on définit un runnable nous permettant de lançer des methodes synchronisées,
+	 * ici ajoutePotion
+	 */
 	private Runnable runPoison = new Runnable(){
 		public void run(){
 			try{
@@ -25,6 +28,8 @@ public class Empoisonne extends Interaction<VuePersonnage> {
 			}
 		}
 	};
+	
+	
 	/**
 	 * 
 	 * @param arene arene
@@ -37,6 +42,7 @@ public class Empoisonne extends Interaction<VuePersonnage> {
 	public void interagit(){
 		// si le personnage est vivant, si c'est bien un feticheur
 		if(defenseur.getElement().estVivant() && defenseur.getElement() instanceof Feticheur) {
+			// on instancie un runnablepour créer la potion
 			new Thread(runPoison).start();
 			defenseur.setPhrase("Je lache un poison");
 		}
