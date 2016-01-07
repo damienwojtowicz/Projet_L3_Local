@@ -71,6 +71,12 @@ public class GenererCaracts {
 		}
 	}
 	
+	/**
+	 * A partir du nom d'une classe, génere une hashmap définissant les caractéristiques
+	 * de la classe lors de son instanciation
+	 * @param typePerso une chaine de caractères désigne le type de personnage crée
+	 * @return une hashmap pour configurer les caractéristiques du personnage
+	 */
 	public static HashMap<Caracteristique, Integer> statsPerso(String typePerso){
 		HashMap<Caracteristique, Integer> res = new HashMap<Caracteristique, Integer>();
 		// tout les perso commencent avec 100 de vie
