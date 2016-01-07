@@ -11,7 +11,7 @@ public class GenererCaracts {
 	 * @return un entier compris entre 50% et 100% du max de c
 	 */
 	private static int caractPrincipale(Caracteristique c){
-		return Calculs.restreintNombre((int)(0.5 * c.getMax()), c.getMax(), (int)(1.5 * Calculs.valeurCaracAleatoire(c)));
+		return Calculs.nombreAleatoire((int)(0.25 * c.getMax()),(int)(0.50 * c.getMax()));
 	}
 	/**
 	 * Calcule une valeur aléatoire pour une caractéristique secondaire
@@ -19,7 +19,7 @@ public class GenererCaracts {
 	 * @return un entier compris entre -25% et 25% du max de c
 	 */
 	private static int caractSecondaire(Caracteristique c){
-		return Calculs.restreintNombre(-(int)(0.25 * c.getMax()),(int)(0.25 * c.getMax()), Calculs.valeurCaracAleatoirePosNeg(c));
+		return Calculs.nombreAleatoire(0,(int)(0.25 * c.getMax()));
 	}
 	
 	/**
@@ -68,6 +68,38 @@ public class GenererCaracts {
 			return "Fine Lame";
 		default:
 			return "Eau Plate";
+		}
+	}
+	
+	public static HashMap<Caracteristique, Integer> statsPerso(String typePerso){
+		HashMap<Caracteristique, Integer> res = new HashMap<Caracteristique, Integer>();
+		// tout les perso commencent avec 100 de vie
+		res.put(Caracteristique.VIE, 100);
+		switch(typePerso){
+		case "Berserker":
+			res.put(Caracteristique.FORCE, 15);
+			res.put(Caracteristique.INITIATIVE, 30);
+			return res;
+		case "Druide":
+			res.put(Caracteristique.FORCE, 10);
+			res.put(Caracteristique.INITIATIVE, 10);
+			return res;
+		case "Vampire":
+			res.put(Caracteristique.FORCE, 20);
+			res.put(Caracteristique.INITIATIVE, 20);
+			return res;
+		case "Goule":
+			res.put(Caracteristique.FORCE, 15);
+			res.put(Caracteristique.INITIATIVE, 15);
+			return res;
+		case "Feticheur":
+			res.put(Caracteristique.FORCE, 10);
+			res.put(Caracteristique.INITIATIVE, 10);
+			return res;
+		default:
+			res.put(Caracteristique.FORCE, 5);
+			res.put(Caracteristique.INITIATIVE, 5);
+			return res;
 		}
 	}
 }

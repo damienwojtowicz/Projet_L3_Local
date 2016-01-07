@@ -143,7 +143,7 @@ public class Constantes {
 	/**
 	 * Le sueil de Vie en dessous duquel la goule ne peut plus utiliser Rage
 	 */
-	public static final int GOULE_SEUIL_VIE = (int)(0.3 * Caracteristique.FORCE.getMax());
+	public static final int GOULE_SEUIL_VIE = (int)(0.40 * Caracteristique.FORCE.getMax());
 	
 	/**
 	 * Timer de la Goule entre chaque Rage

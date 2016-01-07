@@ -9,6 +9,7 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Goule;
 import serveur.element.Element;
+import utilitaires.GenererCaracts;
 import static utilitaires.Constantes.*;
 
 /**
@@ -31,7 +32,7 @@ public class StrategieGoule extends StrategiePersonnage {
 	public StrategieGoule(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Goule(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Goule(nom, groupe,GenererCaracts.statsPerso("Goule")));
 	}
 	
 	/**
@@ -76,16 +77,18 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	protected boolean voitPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
 		if(this.timerCapacite > 0){
+			// si sa capacité n'est pas prête elle charge (comportement par defaut)
 			return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
 		}
 		else{
+			// sinon elle tente de lancer une Rage
 			if(arene.elementFromRef(refRMI).getCaract(Caracteristique.VIE) > GOULE_SEUIL_VIE){
 				this.timerCapacite = RAGE_TIMER;
 				voisins.clear();
 				return arene.lancerRage(refRMI);
 			}
 			else{
-				return super.agirRien(arene, refRMI, voisins);
+				return super.voitPersonnage(arene, refRMI, refCible, elemPlusProche, voisins);
 			}
 		}
 	}

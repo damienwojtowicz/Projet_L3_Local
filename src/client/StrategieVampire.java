@@ -9,6 +9,7 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Element;
 import serveur.element.Vampire;
+import utilitaires.GenererCaracts;
 
 /**
  * Stratégie d'un Vampire
@@ -30,7 +31,7 @@ public class StrategieVampire extends StrategiePersonnage {
 	public StrategieVampire(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Vampire(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Vampire(nom, groupe,GenererCaracts.statsPerso("Vampire")));
 	}
 	
 	/**

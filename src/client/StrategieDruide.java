@@ -10,6 +10,7 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Element;
 import serveur.element.Druide;
+import utilitaires.GenererCaracts;
 import static utilitaires.Constantes.*;
 
 /**
@@ -32,7 +33,7 @@ public class StrategieDruide extends StrategiePersonnage {
 	public StrategieDruide(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Druide(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Druide(nom, groupe,GenererCaracts.statsPerso("Druide")));
 	}
 	
 	/**

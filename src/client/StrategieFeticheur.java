@@ -10,6 +10,7 @@ import serveur.element.Caracteristique;
 import serveur.element.Feticheur;
 import serveur.element.Element;
 import serveur.element.Goule;
+import utilitaires.GenererCaracts;
 import static utilitaires.Constantes.*;
 
 /**
@@ -32,7 +33,7 @@ public class StrategieFeticheur extends StrategiePersonnage {
 	public StrategieFeticheur(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Feticheur(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Feticheur(nom, groupe,GenererCaracts.statsPerso("Feticheur")));
 	}
 	
 	/**

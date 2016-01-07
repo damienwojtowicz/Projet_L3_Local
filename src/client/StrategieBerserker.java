@@ -9,6 +9,7 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Berserker;
 import serveur.element.Element;
+import utilitaires.GenererCaracts;
 import static utilitaires.Constantes.*;
 
 /**
@@ -31,7 +32,7 @@ public class StrategieBerserker extends StrategiePersonnage {
 	public StrategieBerserker(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
-		super(ipArene, port, ipConsole, nbTours, position, logger, new Berserker(nom, groupe,caracts));
+		super(ipArene, port, ipConsole, nbTours, position, logger, new Berserker(nom, groupe,GenererCaracts.statsPerso("Berserker")));
 	}
 	
 	/**
@@ -44,9 +45,8 @@ public class StrategieBerserker extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean agirPotion(IArene arene, int refRMI, int refCible, HashMap<Integer, Point> voisins) throws RemoteException{
-		if(arene.elementFromRef(refCible).getCaract(Caracteristique.VIE) > 0 
-				&& console.getPersonnage().getCaract(Caracteristique.VIE) < BERSERK_SEUIL_SOIN){
-			// si la potion soigne et le berserker est blessé on la ramasse
+		if(console.getPersonnage().getCaract(Caracteristique.VIE) < BERSERK_SEUIL_SOIN){
+			// si le berserker est blessé on la ramasse
 			return super.agirPotion(arene,refRMI,refCible,voisins);
 		}
 		else{
