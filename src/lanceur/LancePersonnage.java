@@ -1,6 +1,4 @@
 package lanceur;
-
-import java.awt.Point;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.HashMap;
@@ -8,7 +6,6 @@ import java.util.HashMap;
 import client.*;
 import logger.LoggerProjet;
 import serveur.element.Caracteristique;
-//import serveur.element.Personnage;
 import utilitaires.Calculs;
 import utilitaires.Constantes;
 
@@ -76,9 +73,14 @@ public class LancePersonnage {
 				caracts.put(Caracteristique.FORCE, 
 						Calculs.valeurCaracAleatoire(Caracteristique.FORCE)); 
 				
-				Point position = Calculs.positionAleatoireArene();
+				//Point position = Calculs.positionAleatoireArene();
 				
-				new StrategieGoule(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, position, logger);
+				new StrategieDruide(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieVampire(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieBerserker(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieGoule(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				new StrategieFeticheur(ipArene, port, ipConsole, nom[i],groupe,caracts, nbTours, Calculs.positionAleatoireArene(), logger);
+				
 				logger.info("Lanceur", "Creation du personnage reussie");
 				
 			} catch (Exception e) {

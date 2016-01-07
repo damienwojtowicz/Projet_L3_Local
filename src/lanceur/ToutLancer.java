@@ -12,7 +12,7 @@ public class ToutLancer{
 	public static void main(String[] args) {
 		LanceArene.lancerArene(args);
 		LanceIHM.lancerIHM(args);
-		LancePersonnage.lancerPerso(args);
 		LancePotion.lancerPotion(args);
+		LancePersonnage.lancerPerso(args);
 	}
 }
