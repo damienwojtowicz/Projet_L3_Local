@@ -153,7 +153,7 @@ public class Constantes {
 	/**
 	 * Timer du Feticheur entre chaque empoisonnement
 	 */
-	public static final int EMPOISONNE_TIMER = 30;
+	public static final int EMPOISONNE_TIMER = 15;
 	
 	// autres
 	

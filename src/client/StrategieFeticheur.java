@@ -45,15 +45,9 @@ public class StrategieFeticheur extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean agirPotion(IArene arene, int refRMI, int refCible, HashMap<Integer, Point> voisins) throws RemoteException{
-		if(arene.elementFromRef(refCible) instanceof Poison){
-			// Le Feticheur reconnait les poison donc il les ignore
-			voisins.remove(refCible);;
-			return false;
-		}
-		else{
-			// sinon il la ramasse
-			return super.agirPotion(arene, refRMI, refCible, voisins);
-		}
+		// Le Feticheur ignore les potions
+		voisins.remove(refCible);;
+		return false;
 	}
 	
 	/**
@@ -67,15 +61,9 @@ public class StrategieFeticheur extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean voitPotion(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		if(arene.elementFromRef(refCible) instanceof Poison){
-			// Le Feticheur reconnait les poison donc il les ignore
-			voisins.remove(refCible);;
-			return false;
-		}
-		else{
-			// sinon il se dirige vers elle
-			return super.voitPotion(arene, refRMI, refCible, elemPlusProche, voisins);
-		}
+		// Le Feticheur ignore les potions
+		voisins.remove(refCible);;
+		return false;
 	}
 	
 	/**
