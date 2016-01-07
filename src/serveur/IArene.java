@@ -181,6 +181,14 @@ public interface IArene extends Remote {
 	public boolean lancerRage(int refRMI) throws RemoteException;
 	
 	/**
+	 * Execute une crise de rage sur une goule, si possible.
+	 * @param refRMI reference RMI dela goule
+	 * @return vrai si l'action a ete effectuee, faux sinon
+	 * @throws RemoteException
+	 */
+	public boolean lancerPoison(int refRMI) throws RemoteException;
+	
+	/**
 	 * Execute un duel entre le personnage correspondant a la console donnee 
 	 * et l'adversaire correspondant a la reference RMI donnee.
 	 * Le duel echoue si une action a deja ete executee a ce tour par 

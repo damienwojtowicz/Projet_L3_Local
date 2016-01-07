@@ -19,12 +19,12 @@ import client.controle.IConsole;
 import logger.LoggerProjet;
 import serveur.element.Caracteristique;
 import serveur.element.Element;
-import serveur.element.Goule;
 import serveur.element.Personnage;
 import serveur.element.Potion;
 import serveur.interaction.Concocter;
 import serveur.interaction.Deplacement;
 import serveur.interaction.Duel;
+import serveur.interaction.Empoisone;
 import serveur.interaction.Rage;
 import serveur.interaction.Ramassage;
 import serveur.vuelement.VueElement;
@@ -783,6 +783,26 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 		return res;
 	}
 	
+	@Override
+	public boolean lancerPoison(int refRMI) throws RemoteException {
+		boolean res = false;
+		
+		VuePersonnage vuePersonnage = personnages.get(refRMI);
+		
+		if (vuePersonnage.isActionExecutee()) {
+			// si une action a deja ete executee
+			logActionDejaExecutee(refRMI);
+			
+		} else {
+			// sinon, on joue l'interaction
+			new Empoisone(this, vuePersonnage).interagit();
+			personnages.get(refRMI).executeAction();
+			
+			res = true;
+		}
+		
+		return res;
+	}
 	
 	@Override
 	public boolean lanceAttaque(int refRMI, int refRMIAdv) throws RemoteException {
