@@ -12,14 +12,14 @@ import serveur.vuelement.VuePersonnage;
  * 
  *
  */
-public class Empoisone extends Interaction<VuePersonnage> {
+public class Empoisonne extends Interaction<VuePersonnage> {
 	
 	/**
 	 * 
 	 * @param arene arene
 	 * @param feticheur Vuepersonnage du Feticheur
 	 */
-	public Empoisone(Arene arene, VuePersonnage feticheur) {
+	public Empoisonne(Arene arene, VuePersonnage feticheur) {
 		super(arene, feticheur, feticheur);
 	}
 	

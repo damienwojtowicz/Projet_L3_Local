@@ -24,7 +24,7 @@ import serveur.element.Potion;
 import serveur.interaction.Concocter;
 import serveur.interaction.Deplacement;
 import serveur.interaction.Duel;
-import serveur.interaction.Empoisone;
+import serveur.interaction.Empoisonne;
 import serveur.interaction.Rage;
 import serveur.interaction.Ramassage;
 import serveur.vuelement.VueElement;
@@ -795,7 +795,7 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 			
 		} else {
 			// sinon, on joue l'interaction
-			new Empoisone(this, vuePersonnage).interagit();
+			new Empoisonne(this, vuePersonnage).interagit();
 			personnages.get(refRMI).executeAction();
 			
 			res = true;
