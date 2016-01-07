@@ -138,7 +138,7 @@ public class Constantes {
 	/**
 	 * Timer du druide lui permettant d'améliorer les potions
 	 */
-	public static final int CONCOCTER_TIMER = 2;
+	public static final int CONCOCTER_TIMER = 5;
 	
 	/**
 	 * Le sueil de Vie en dessous duquel la goule ne peut plus utiliser Rage
