@@ -131,6 +131,16 @@ public class Constantes {
 	public static final double BERSERK_SEUIL_SOIN = 0.8 * Caracteristique.VIE.getMax();
 	
 	/**
+	 * Seuil à partir duquel le druide charge
+	 */
+	public static final int DRUIDE_SEUIL_FORCE = 35;
+	
+	/**
+	 * Timer du druide lui permettant d'améliorer les potions
+	 */
+	public static final int CONCOCTER_TIMER = 2;
+	
+	/**
 	 * Retourne le nom de la classe de l'objet passe en parametre, sous 
 	 * forme de chaine de caracteres.
 	 * @param o object
