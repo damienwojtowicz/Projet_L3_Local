@@ -28,7 +28,7 @@ public class StrategiePersonnage {
 	/**
 	 * attribut servant éventuellement à timer les capacités des personnages
 	 */
-	private int timerCapacite;
+	protected int timerCapacite;
 
 	/**
 	 * Cree un personnage, la console associe et sa strategie.
