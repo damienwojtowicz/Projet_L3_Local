@@ -24,10 +24,4 @@ public class Feticheur extends Personnage {
 	public Feticheur(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Feticheur "+nom, groupe, caracts);
 	}
-	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
-	}
-	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
-	}
 }

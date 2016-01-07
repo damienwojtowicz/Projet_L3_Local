@@ -26,11 +26,16 @@ public class Berserker extends Personnage {
 	public Berserker(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Berserker "+nom, groupe, caracts);
 	}
-
-	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, BERSERK_FORCE);
-	}
+	
+	/**
+	 * eventuelles actions à effectuer lorsque le personnage est attaqué
+	 * @param defenseur la vue personnage du defenseur
+	 * @param attaquant la vue personnage de l'attaquant
+	 * @param arene l'arene ou combattent les personnages
+	 * @throws RemoteException
+	 */
 	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
+		// quand le berserker est attaqué il gagne de la force
+		arene.incrementeCaractPersonnage(defenseur, Caracteristique.FORCE, BERSERK_FORCE);
 	}
 }

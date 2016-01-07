@@ -27,11 +27,17 @@ public class Vampire extends Personnage {
 	public Vampire(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Vampire "+nom, groupe, caracts);
 	}
+	
+	/**
+	 * eventuelles actions à effectuer lorsque le personnage attaque
+	 * @param defenseur la vue personnage du defenseur
+	 * @param attaquant la vue personnage de l'attaquant
+	 * @param arene l'arene ou combattent les personnages
+	 * @throws RemoteException
+	 */
 	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		//quand le vampire attaque il se soigne puis se téléporte
 		arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, DRAIN);
 		attaquant.setPosition(Calculs.positionAleatoireArene());
-	}
-	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
 	}
 }

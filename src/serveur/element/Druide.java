@@ -1,11 +1,6 @@
 package serveur.element;
 
-
-import java.rmi.RemoteException;
 import java.util.HashMap;
-
-import serveur.Arene;
-import serveur.vuelement.VuePersonnage;
 
 /**
  * 
@@ -23,12 +18,5 @@ public class Druide extends Personnage {
 	 */
 	public Druide(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Druide "+nom, groupe, caracts);
-	}
-
-	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
-	}
-	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
 	}
 }

@@ -26,12 +26,18 @@ public class Goule extends Personnage {
 	public Goule(String nom, String groupe, HashMap<Caracteristique, Integer> caracts){
 		super("Goule "+nom, groupe, caracts);
 	}
+	
+	/**
+	 * eventuelles actions à effectuer lorsque le personnage attaque
+	 * @param defenseur la vue personnage du defenseur
+	 * @param attaquant la vue personnage de l'attaquant
+	 * @param arene l'arene ou combattent les personnages
+	 * @throws RemoteException
+	 */
 	public void capaciteCombatAtt(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
+		// quand la goule tue une personnage, elle est soignée
 		if(!defenseur.getElement().estVivant()){
 			arene.incrementeCaractPersonnage(attaquant, Caracteristique.VIE, CANNIBALISME);
 		}
-	}
-	public void capaciteCombatDef(VuePersonnage defenseur,VuePersonnage attaquant, Arene arene) throws RemoteException{
-		
 	}
 }
