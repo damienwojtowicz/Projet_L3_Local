@@ -20,7 +20,7 @@ public class Empoisonne extends Interaction<VuePersonnage> {
 	private Runnable runPoison = new Runnable(){
 		public void run(){
 			try{
-				arene.ajoutePotion(new Poison(defenseur.getElement().getNomGroupe()), defenseur.getPosition());
+				arene.ajoutePotion(new Poison(defenseur.getElement().getGroupe()), defenseur.getPosition());
 				logs(Level.INFO, "Poison posé avec succes");
 			}
 			catch(Exception e){

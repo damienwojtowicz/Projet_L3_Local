@@ -9,7 +9,6 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Feticheur;
 import serveur.element.Element;
-import serveur.element.Poison;
 import static utilitaires.Constantes.*;
 
 /**
