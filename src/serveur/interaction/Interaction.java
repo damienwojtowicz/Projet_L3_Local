@@ -46,17 +46,6 @@ public abstract class Interaction<T extends VueElement<?>> {
 	}
 	
 	/**
-	 * Cree une interaction d'un element sur lui-même.
-	 * @param arene arene
-	 * @param defenseur vue du defenseur
-	 * @throws RemoteException
-	 */
-	public Interaction(Arene arene, T perso) {
-		this.arene = arene;
-		this.defenseur = perso;
-	}
-	
-	/**
 	 * Realise l'interaction.
 	 */
 	public abstract void interagit();

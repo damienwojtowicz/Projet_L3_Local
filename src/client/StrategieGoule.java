@@ -44,7 +44,7 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean agirPotion(IArene arene, int refRMI, int refCible, HashMap<Integer, Point> voisins) throws RemoteException{
-		// les goules ne peuvent pas ramaser de potion, on les ignore
+		// les goules ne peuvent pas ramasser de potion, on les ignore
 		voisins.remove(refCible);;
 		return false;
 	}
@@ -60,7 +60,7 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean voitPotion(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		// les goules ne peuvent pas ramaser de potion, on les ignore
+		// les goules ne peuvent pas ramasser de potion, on les ignore
 		voisins.remove(refCible);;
 		return false;
 	}
@@ -73,13 +73,18 @@ public class StrategieGoule extends StrategiePersonnage {
 	 * @throws RemoteException
 	 */
 	protected boolean agirRien(IArene arene, int refRMI, HashMap<Integer, Point> voisins) throws RemoteException{
-		if(this.timerCapacite == 0){
+		if(this.timerCapacite > 0){
 			return super.agirRien(arene, refRMI, voisins);
 		}
 		else{
-			this.timerCapacite = RAGE_TIMER;
-			voisins.clear();
-			return arene.rager(refRMI);
+			if(arene.elementFromRef(refRMI).getCaract(Caracteristique.VIE) > GOULE_SEUIL_VIE){
+				this.timerCapacite = RAGE_TIMER;
+				voisins.clear();
+				return arene.lancerRage(refRMI);
+			}
+			else{
+				return super.agirRien(arene, refRMI, voisins);
+			}
 		}
 	}
 }

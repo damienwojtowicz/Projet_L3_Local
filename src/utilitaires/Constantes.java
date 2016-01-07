@@ -91,7 +91,7 @@ public class Constantes {
 	/**
 	 * Quantitée de vie perdue à chaque crise rage
 	 */
-	public static final int RAGE_MALUS = -20;
+	public static final int RAGE_MALUS = -15;
 	
 	/**
 	 * Quantitées de force et d'initiative gagnées à chaque crise de rage

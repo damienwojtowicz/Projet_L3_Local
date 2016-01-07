@@ -19,6 +19,7 @@ import client.controle.IConsole;
 import logger.LoggerProjet;
 import serveur.element.Caracteristique;
 import serveur.element.Element;
+import serveur.element.Goule;
 import serveur.element.Personnage;
 import serveur.element.Potion;
 import serveur.interaction.Deplacement;
@@ -730,7 +731,7 @@ public class Arene extends UnicastRemoteObject implements IAreneIHM, Runnable {
 	
 	
 	@Override
-	public boolean rager(int refRMI) throws RemoteException {
+	public boolean lancerRage(int refRMI) throws RemoteException {
 		boolean res = false;
 		
 		VuePersonnage vuePersonnage = personnages.get(refRMI);

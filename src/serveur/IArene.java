@@ -169,7 +169,7 @@ public interface IArene extends Remote {
 	 * @return vrai si l'action a ete effectuee, faux sinon
 	 * @throws RemoteException
 	 */
-	public boolean rager(int refRMI) throws RemoteException;
+	public boolean lancerRage(int refRMI) throws RemoteException;
 	
 	/**
 	 * Execute un duel entre le personnage correspondant a la console donnee 
