@@ -1,10 +1,6 @@
 package serveur.element;
 
-import java.rmi.RemoteException;
 import java.util.HashMap;
-
-import serveur.Arene;
-import serveur.vuelement.VuePersonnage;
 
 /**
  * 

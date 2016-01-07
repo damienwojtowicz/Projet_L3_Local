@@ -150,6 +150,11 @@ public class Constantes {
 	 */
 	public static final int RAGE_TIMER = 10;
 	
+	/**
+	 * Timer du Feticheur entre chaque empoisonnement
+	 */
+	public static final int EMPOISONNE_TIMER = 15;
+	
 	// autres
 	
 	/**

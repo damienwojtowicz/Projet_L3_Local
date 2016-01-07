@@ -9,26 +9,27 @@ import serveur.IArene;
 import serveur.element.Caracteristique;
 import serveur.element.Goule;
 import serveur.element.Element;
+import serveur.element.Poison;
 import static utilitaires.Constantes.*;
 
 /**
- * Stratégie d'une Goule
+ * Stratégie d'un Feticheur
  */
-public class StrategieGoule extends StrategiePersonnage {
+public class StrategieFeticheur extends StrategiePersonnage {
 	
 	/**
-	 * Cree une Goule, la console associe et sa strategie.
+	 * Cree un Feticheur, la console associe et sa strategie.
 	 * @param ipArene ip de communication avec l'arene
 	 * @param port port de communication avec l'arene
-	 * @param ipConsole ip de la console de la Goule
-	 * @param nom le nom de la Goule
-	 * @param groupe le groupe de la Goule
-	 * @param caracts les caractéristiques de la Goule
-	 * @param nbTours nombre de tours pour cette Goule (si negatif, illimite)
-	 * @param position position initiale de la Goule dans l'arene
+	 * @param ipConsole ip de la console du Feticheur
+	 * @param nom le nom du Feticheur
+	 * @param groupe le groupe du Feticheur
+	 * @param caracts les caractéristiques du Feticheur
+	 * @param nbTours nombre de tours pour ce Feticheur (si negatif, illimite)
+	 * @param position position initiale du Feticheur dans l'arene
 	 * @param logger gestionnaire de log
 	 */
-	public StrategieGoule(String ipArene, int port, String ipConsole, 
+	public StrategieFeticheur(String ipArene, int port, String ipConsole, 
 			String nom, String groupe, HashMap<Caracteristique, Integer> caracts,
 			int nbTours, Point position, LoggerProjet logger) {
 		super(ipArene, port, ipConsole, nbTours, position, logger, new Goule(nom, groupe,caracts));
@@ -44,9 +45,15 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean agirPotion(IArene arene, int refRMI, int refCible, HashMap<Integer, Point> voisins) throws RemoteException{
-		// les goules ne peuvent pas ramasser de potion, on les ignore
-		voisins.remove(refCible);;
-		return false;
+		if(arene.elementFromRef(refCible) instanceof Poison){
+			// Le Feticheur reconnait les poison donc il les ignore
+			voisins.remove(refCible);;
+			return false;
+		}
+		else{
+			// sinon il la ramasse
+			return super.agirPotion(arene, refRMI, refCible, voisins);
+		}
 	}
 	
 	/**
@@ -60,7 +67,28 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	@Override
 	protected boolean voitPotion(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
-		// les goules ne peuvent pas ramasser de potion, on les ignore
+		if(arene.elementFromRef(refCible) instanceof Poison){
+			// Le Feticheur reconnait les poison donc il les ignore
+			voisins.remove(refCible);;
+			return false;
+		}
+		else{
+			// sinon il se dirige vers elle
+			return super.agirPotion(arene, refRMI, refCible, voisins);
+		}
+	}
+	
+	/**
+	 * action effectuée si le personnage voit un personnage
+	 * @param arene du personnage
+	 * @param refRMI id du personnage
+	 * @param refCible id du personnage ciblé
+	 * @param elemPlusProche personnage ciblée
+	 * @param voisins vision du personnage 
+	 * @throws RemoteException
+	 */
+	protected boolean voitPersonnage(IArene arene, int refRMI, int refCible, Element elemPlusProche, HashMap<Integer, Point> voisins) throws RemoteException{
+		// Le Feticheur ne cherche pas à se battre
 		voisins.remove(refCible);;
 		return false;
 	}
@@ -74,17 +102,14 @@ public class StrategieGoule extends StrategiePersonnage {
 	 */
 	protected boolean agirRien(IArene arene, int refRMI, HashMap<Integer, Point> voisins) throws RemoteException{
 		if(this.timerCapacite > 0){
+			// si le timer n'est pas fini, il erre
 			return super.agirRien(arene, refRMI, voisins);
 		}
 		else{
-			if(arene.elementFromRef(refRMI).getCaract(Caracteristique.VIE) > GOULE_SEUIL_VIE){
-				this.timerCapacite = RAGE_TIMER;
-				voisins.clear();
-				return arene.lancerRage(refRMI);
-			}
-			else{
-				return super.agirRien(arene, refRMI, voisins);
-			}
+			// sinon il pose un poison
+			this.timerCapacite = EMPOISONNE_TIMER;
+			voisins.clear();
+			return arene.lancerPoison(refRMI);
 		}
 	}
 }

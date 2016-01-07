@@ -9,7 +9,7 @@ import serveur.element.Poison;
 import serveur.vuelement.VuePersonnage;
 
 /**
- * 
+ * action visant à poser un poison sur le sol
  *
  */
 public class Empoisonne extends Interaction<VuePersonnage> {
